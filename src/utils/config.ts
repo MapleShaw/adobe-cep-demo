@@ -1,0 +1,87 @@
+export default {
+  /**
+     * 云媒资内，允许上传类型
+     */
+    allowOtherUploadExts: [
+      'JPG',
+      'MP4',
+      'QT',
+      'ai',
+      'avi',
+      'docx',
+      'gif',
+      'jpeg',
+      'jpg',
+      'key',
+      'm4v',
+      'mov',
+      'mp3',
+      'mp4',
+      'pdf',
+      'png',
+      'pptx',
+      'psb',
+      'psd',
+      'tif',
+      'txt',
+      'wmv',
+      'xlsx',
+      '0',
+      '02',
+      '1',
+      'TTF',
+      'app',
+      'db',
+      'dll',
+      'exe',
+      'json',
+      'otf',
+      'prproj',
+      'swf',
+      'vch',
+      'xml',
+      'zip',
+    ].map((item) => item.toLowerCase()),
+    /**
+     * 仅仅在编辑页内使用，外部现在允许上传更多类型素材
+     */
+    allowUploadExts: {
+      image: ['jpg', 'png', 'apng', 'gif', 'jpeg', 'bmp', 'tiff', 'ai', 'cdr', 'eps'],
+      video: [
+        'm3u8',
+        'mp4',
+        'ts',
+        'flv',
+        'wmv',
+        'asf',
+        'rm',
+        'rmvb',
+        'mpg',
+        'mpeg',
+        '3gp',
+        'mov',
+        'webm',
+        'mkv',
+        'avi',
+        'wm',
+        'asx',
+        'ram',
+        'mpe',
+        'vob',
+        'dat',
+        'mp4v',
+        'm4v',
+        'f4v',
+        'mxf',
+        'QT',
+      ],
+
+      audio: ['mp3', 'm4a', 'flac', 'ogg', 'wav', 'ra', 'aac'],
+
+      // zip: ['zip'],
+
+      get all() {
+        return this.image.concat(this.video).concat(this.audio)
+      },
+    },
+}

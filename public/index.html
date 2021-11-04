@@ -6,6 +6,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="text/javascript">
+      /**
+       * 当前迭代版本<%= process.env.VUE_APP_EXPORT_VERSION %>
+       **/
+      var _version = '<%= process.env.VUE_APP_EXPORT_VERSION %>'
+      var _speedMark = new Date()
+      var _start = performance.now()
+      var _base = '<%= process.env.VUE_APP_EXPORT_APP_PATH %>'
+      var _api_host = '<%= process.env.VUE_APP_EXPORT_API_HOST %>'
+      window._isH5 = (function isNotPC() {
+        let result = /iphone|ipad|ipod|android/i.test(window.navigator.userAgent.toLowerCase())
+        if (result) {
+          let viewport = document.querySelector('meta[name=viewport]')
+          viewport.setAttribute(
+            'content',
+            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+          )
+        }
+        return result
+      })()
+    </script>
   </head>
   <body>
     <noscript>

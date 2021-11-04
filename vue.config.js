@@ -17,8 +17,8 @@ module.exports = {
     host: 'localhost',
     https: false,
     open: true,
-    hot: true
-    // disableHostCheck: true
+    hot: true,
+    disableHostCheck: true
   },
   configureWebpack: {
     resolve: {
@@ -27,6 +27,7 @@ module.exports = {
   },
   chainWebpack: config => {
     config.resolve.symlinks(true) // 修复HMR
+    config.resolve.alias.set('@', resolve('src'))
     config.plugin('webpackPluginCepLink').use(webpackPluginCepLink, [
       {
         assets: './public/cep',

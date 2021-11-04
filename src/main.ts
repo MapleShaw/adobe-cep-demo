@@ -6,6 +6,7 @@
 */
 import { createApp } from 'vue'
 import router from './router/index'
+import store from './store'
 import App from './App.vue'
 import './assets/styles/index.less'
 
@@ -13,8 +14,13 @@ loadScript(`${process.env.NODE_ENV === 'development' ? '/cep' : '.'}/client/libs
   .then(() => {
     const csInterface = new (window as any).CSInterface()
     const app = createApp(App)
-    app.use(router).mount('#app')
+    app.use(store).use(router).mount('#app')
     app.provide('csInterface', csInterface)
+    const event = new (window as any).CSEvent() // 创建一个事件
+    event.type = 'com.adobe.PhotoshopPersistent' // 注册持久化运行事件
+    event.scope = 'APPLICATION'
+    event.extensionId = csInterface.getExtensionID() // 我们的扩展 ID
+    csInterface.dispatchEvent(event) // 发送事件让宿主持久化运行我们的扩展
   })
 
 function loadScript (src: string) {
